@@ -31,6 +31,7 @@ function App() {
   const [names, setNames] = useState<string[]>(DEFAULT_NAMES)
   const [pickedIndex, setPickedIndex] = useState<number | null>(null)
   const [spinning, setSpinning] = useState(false)
+  const [showWinner, setShowWinner] = useState(false)
   const riggedCursorRef = useRef(0)
 
   useEffect(() => {
@@ -42,6 +43,10 @@ function App() {
     if (pickedIndex == null) return null
     return names[pickedIndex] ?? null
   }, [names, pickedIndex])
+
+  useEffect(() => {
+    if (spinning) setShowWinner(false)
+  }, [spinning])
 
   const riggedPick = useCallback((currentNames: string[]) => {
     if (RIGGED_PICK_ORDER.length === 0) return null
@@ -107,6 +112,37 @@ function App() {
         </div>
       </header>
 
+      {showWinner && pickedName && (
+        <div
+          className="winnerOverlay"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Winner"
+          onClick={() => setShowWinner(false)}
+        >
+          <div className="winnerBox" onClick={(e) => e.stopPropagation()}>
+            <div className="winnerTitle">Winner</div>
+            <div className="winnerName">{pickedName}</div>
+            <div className="winnerButtons">
+              <button type="button" className="secondary" onClick={() => setShowWinner(false)}>
+                Close
+              </button>
+              <button
+                type="button"
+                disabled={spinning || pickedIndex == null}
+                onClick={() => {
+                  if (pickedIndex == null) return
+                  removeAt(pickedIndex)
+                  setShowWinner(false)
+                }}
+              >
+                Remove winner
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="content">
         <main className="stage">
           <div className="wheelCard">
@@ -114,7 +150,10 @@ function App() {
               names={names}
               spinning={spinning}
               setSpinning={setSpinning}
-              onPick={(index) => setPickedIndex(index)}
+              onPick={(index) => {
+                setPickedIndex(index)
+                setShowWinner(true)
+              }}
               riggedPick={riggedPick}
             />
             <div className="resultRow" aria-live="polite">

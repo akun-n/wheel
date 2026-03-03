@@ -93,6 +93,55 @@
   min-height: 0;
 }
 
+/* Winner overlay */
+.winnerOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.winnerBox {
+  width: min(560px, 100%);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.winnerTitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.winnerName {
+  font-weight: 950;
+  letter-spacing: -0.03em;
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.05;
+  padding: 4px 8px;
+}
+
+.winnerButtons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
 /* shared button variants */
 button.secondary {
   background: rgba(255, 255, 255, 0.06);
