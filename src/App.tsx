@@ -5,20 +5,13 @@ import { PeoplePanel } from './components/PeoplePanel.tsx'
 import { Wheel } from './components/Wheel.tsx'
 
 // Put the person/people you want to win here (repeatable order). Empty = normal random wheel.
-const RIGGED_PICK_ORDER: string[] = ['Deniz', 'Beren', 'Zehra', 'Rüzgar', 'Ege', 'Kaya', 'Bilge']
+const RIGGED_PICK_ORDER: string[] = []
 const DEFAULT_NAMES = [
-  'Deniz',
   'Lara',
-  'Bilge',
-  'Ece',
   'Tahsin',
-  'Kaya',
   'Yusuf',
-  'Poyraz',
   'Mina',
   'Aslan',
-  'Ege',
-  'Beren',
   'Zehra',
   'Rüzgar'
 ]
