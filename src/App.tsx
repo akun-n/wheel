@@ -8,10 +8,7 @@ import { Wheel } from './components/Wheel.tsx'
 const RIGGED_PICK_ORDER: string[] = []
 const DEFAULT_NAMES = [
   'Lara',
-  'Tahsin',
-  'Yusuf',
   'Mina',
-  'Aslan',
   'Zehra',
   'Rüzgar'
 ]
